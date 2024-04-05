@@ -1,4 +1,5 @@
 import React from 'react'
+import pizzaImage from '../assets/pizza.png';
 export const burgers = [
   {
     id: 1,
@@ -20,12 +21,35 @@ export const burgers = [
     description: 'Delicious burger topped with crispy bacon, tangy BBQ sauce, and cheddar cheese.',
     price: '$9.99',
     image: 'https://static.vecteezy.com/system/resources/thumbnails/023/010/420/small/the-delicious-burger-in-the-black-background-with-ai-generated-free-photo.jpg'
-    }  // Add more burger objects as needed
+  },
+  {
+    id: 4,
+    title: 'Chicken Cheese Pizza',
+    description: 'Delicious pizza topped with crispy bacon, tangy BBQ sauce, and cheddar cheese.',
+    price: '$11.99',
+    image: pizzaImage
+  },
+
 ];
 
 const FoodItem = ({ title, description, price, image }) => (
-  <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white">
-    <img className="w-full" src={image} alt={title} />
+  <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white flex flex-col items-center">
+    <img className="w-[250px] h-56 rounded-lg" src={image} alt={title} />
+    <div className="px-6 py-4">
+      <div className="font-bold text-xl mb-2">{title}</div>
+      <p className="text-gray-700 text-base">{description}</p>
+      <div className='flex justify-between items-center mt-4'>
+        <p className="text-gray-900 text-lg mt-2">{price}</p>
+      <button className='bg-primary-color text-sm text-black px-6 py-3 rounded-full hover:bg-hover-color hover:text-white transition duration-300'>Order Now</button>
+      </div>
+    </div>
+  </div>
+);
+
+export default FoodItem
+export const HomeFoodItem = ({ title, description, price, image }) => (
+  <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white flex flex-col items-center">
+    <img className="w-[250px] h-56 rounded-lg" src={image} alt={title} />
     <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2">{title}</div>
       <p className="text-gray-700 text-base">{description}</p>
@@ -33,5 +57,3 @@ const FoodItem = ({ title, description, price, image }) => (
     </div>
   </div>
 );
-
-export default FoodItem
