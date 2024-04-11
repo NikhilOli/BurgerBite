@@ -1,5 +1,7 @@
 import React from 'react'
 import pizzaImage from '../assets/pizza.png';
+import {useDispatch} from 'react-redux'
+import { add } from '../store/cartSlice';
 export const burgers = [
   {
     id: 1,
@@ -32,7 +34,12 @@ export const burgers = [
 
 ];
 
-const FoodItem = ({ title, description, price, image }) => (
+const FoodItem = ({id, title, description, price, image }) => {
+  const dispatch = useDispatch();
+  const handleAdd = (item) => {
+    dispatch(add(item))
+  }
+  return(
   <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white flex flex-col items-center">
     <img className="w-[250px] h-56 rounded-lg" src={image} alt={title} />
     <div className="px-6 py-4">
@@ -40,11 +47,12 @@ const FoodItem = ({ title, description, price, image }) => (
       <p className="text-gray-700 text-base">{description}</p>
       <div className='flex justify-between items-center mt-4'>
         <p className="text-gray-900 text-lg mt-2">{price}</p>
-      <button className='bg-primary-color text-sm text-black px-6 py-3 rounded-full hover:bg-hover-color hover:text-white transition duration-300'>Order Now</button>
+      <button onClick={() => handleAdd({ id, title, description, price, image })} className='bg-primary-color text-sm text-black px-6 py-3 rounded-full hover:bg-hover-color hover:text-white transition duration-300'>Order Now</button>
       </div>
     </div>
   </div>
-);
+)
+};
 
 export default FoodItem
 export const HomeFoodItem = ({ title, description, price, image }) => (
